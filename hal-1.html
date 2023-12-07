@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Login</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,500;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<!-- header -->
+<header>
+    <h2 class="logo">House Math</h2>
+    <nav class="navigation">
+        <a href="index.html">Home</a>
+        <a href="contact.html">contact</a>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <button class="btnlogin-popup">login</button>
+    </nav>
+</header>
+
+<body>
+</body>
+<!-- halaman login -->
+<div class="wrapper">
+    <div class="form-box login">
+        <h2>Login</h2>
+        <!-- <form action="menu.html"> -->
+        <div id="message"></div>
+        <div class="input-box">
+            <span class="icon"><ion-icon name="mail"></ion-icon></span>
+            <input type="text" id="emailInput" required>
+            <label>Email</label>
+        </div>
+        <div class="input-box">
+            <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
+            <input type="password" id="pwd" required>
+            <label>Sandi</label>
+        </div>
+        <div class="ingat">
+            <label><input type="checkbox" id="chk">
+                Lihat Sandi</label>
+            <a href="menu.html" id="menuLink"><button id="tombol" class="btnlewati"> Lewati>> </button></a>
+        </div>
+
+        <button type="submit" class="btn" id="btnLogin">Masuk</button>
+        </form>
+    </div>
+</div>
+<script>
+    const pwd = document.getElementById("pwd");
+    const chk = document.getElementById("chk");
+    const tambahNilai = document.getElementById("tambahNilai");
+
+    chk.onchange = function (e) {
+        pwd.type = chk.checked ? "text" : "password";
+    };
+    let clickCount = localStorage.getItem('clickCount') || 0;
+
+    document.getElementById('tombol').addEventListener('click', () => {
+        clickCount++;
+
+        if (clickCount > 5) {
+            alert("Anda telah mencapai batas uji coba! silahkan Login untuk info lebih lanjut");
+            clickCount = 0; //untuk Reset nilai clickCount menjadi 0 setelah mencapai 5 klik
+            document.getElementById('menuLink').removeAttribute('href');
+        }
+
+        localStorage.setItem('clickCount', clickCount);
+    });
+</script>
+<!-- penjelasan clickcount dan step -->
+<!-- 
+
+1. `let clickCount = localStorage.getItem('clickCount') || 0;`
+   - Inisialisasi variabel `clickCount`. Ini mengambil nilai dari `localStorage` dengan kunci `'clickCount'`. Jika tidak ada nilai yang tersimpan di `localStorage`, maka nilai defaultnya adalah 0.
+
+2. `document.getElementById('tombol').addEventListener('click', () => {`
+   - Menambahkan event listener untuk elemen dengan ID `'tombol'`. Ketika elemen ini diklik, fungsi yang didefinisikan di dalam blok `() => { ... }` akan dieksekusi.
+
+3. `clickCount++;`
+   - Setiap kali tombol dengan ID `'tombol'` diklik, nilai `clickCount` akan bertambah satu.
+
+4. `if (clickCount > 5) { ... }`
+   - Kondisi yang memeriksa apakah `clickCount` telah mencapai atau melebihi angka 5.
+
+5. `alert("Anda telah mencapai batas uji coba!");`
+   - Jika `clickCount` melebihi 5, maka akan muncul pesan peringatan (alert) yang memberitahukan pengguna bahwa mereka telah mencapai batas uji coba.
+
+6. `clickCount = 0;`
+   - Jika `clickCount` melebihi 5, nilai `clickCount` akan di-set kembali ke 0. Ini adalah cara untuk mereset hitungan setelah mencapai batas klik.
+
+7. `document.getElementById('menuLink').removeAttribute('href');`
+   - Jika `clickCount` melebihi 5, bagian ini menghapus atribut `href` dari elemen dengan ID `'menuLink'`. Ini mencegah link tersebut dari mengarahkan pengguna ke halaman lain jika batas klik tercapai.
+
+8. `localStorage.setItem('clickCount', clickCount);`
+   - Terakhir, nilai `clickCount` yang baru (setelah penambahan atau reset) disimpan kembali ke `localStorage`. Ini memastikan bahwa nilai `clickCount` akan tetap tercatat bahkan setelah pengguna menutup dan membuka kembali halaman.
+
+Kode ini secara keseluruhan bertujuan untuk melacak jumlah klik pada tombol dengan ID `'tombol'`, memberikan peringatan jika sudah mencapai atau melebihi batas lima kali klik, dan melakukan reset nilai `clickCount` jika perlu. -->
+<script src="script.js"></script>
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
